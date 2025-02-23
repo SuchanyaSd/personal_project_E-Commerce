@@ -1,7 +1,7 @@
 import React from 'react'
 import Photo from "../assets/pic/bg.png"
 
-function Hero() {
+function Header() {
   return (
     <div className='flex flex-col sm:flex-row border border-gray-400'>
       {/* Hero Left Side */}
@@ -27,4 +27,4 @@ function Hero() {
   )
 }
 
-export default Hero
+export default Header

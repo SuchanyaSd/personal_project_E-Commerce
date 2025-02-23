@@ -6,6 +6,9 @@ import p_img5 from "./img/products/f5.jpg"
 import p_img6 from "./img/products/f6.jpg"
 import p_img7 from "./img/products/f7.jpg"
 import p_img8 from "./img/products/f8.jpg"
+import p_img9 from "./img/products/n7.jpg"
+import p_img10 from "./img/products/n8.jpg"
+import p_img11 from "./img/products/n6.jpg"
 
 export const products = [
   {
@@ -17,7 +20,7 @@ export const products = [
     category: "Men",
     sizes: ["s", "M", "L"],
     date: 123123123123,
-    bestseller: false,
+    bestseller: true,
   },
   {
     id: 2,
@@ -61,7 +64,7 @@ export const products = [
     category: "Women",
     sizes: ["s", "M", "L"],
     date: 123123123123,
-    bestseller: false,
+    bestseller: true,
   },
   {
     id: 6,
@@ -165,7 +168,7 @@ export const products = [
   {
     id: 15,
     name: "Men cotton",
-    description: "asdasd zxczxc asdas dqweqweqwe",
+    description: "Bottomwear zxczxc asdas dqweqweqwe",
     price: 100,
     image: [p_img6],
     category: "Men",
@@ -190,6 +193,39 @@ export const products = [
     description: "asdasd zxczxc asdas dqweqweqwe",
     price: 100,
     image: [p_img3],
+    category: "Men",
+    sizes: ["s", "M", "L"],
+    date: 123123123123,
+    bestseller: true,
+  },
+  {
+    id: 18,
+    name: "Men cotton",
+    description: "asdasd zxczxc asdas dqweqweqwe",
+    price: 100,
+    image: [p_img9],
+    category: "Men",
+    sizes: ["s", "M", "L"],
+    date: 123123123123,
+    bestseller: true,
+  },
+  {
+    id: 19,
+    name: "Men cotton",
+    description: "asdasd zxczxc asdas dqweqweqwe",
+    price: 100,
+    image: [p_img10],
+    category: "Men",
+    sizes: ["s", "M", "L"],
+    date: 123123123123,
+    bestseller: true,
+  },
+  {
+    id: 20,
+    name: "Men cotton",
+    description: "asdasd zxczxc asdas dqweqweqwe",
+    price: 100,
+    image: [p_img11],
     category: "Men",
     sizes: ["s", "M", "L"],
     date: 123123123123,
