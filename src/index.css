@@ -15,4 +15,10 @@ a.active hr {
    font-weight: 400;
    font-style: normal;
  }
- 
+/* อยู่ที่หน้าไหนจะค้างสีไว้ที่หน้านั้น */
+ @media (max-width:640px) {
+   a.active {
+      background-color: black;
+      color: white;
+   }
+ }

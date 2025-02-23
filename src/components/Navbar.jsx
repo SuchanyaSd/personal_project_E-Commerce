@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router'
 import { AvatarIcon, CartIcon, DropdownIcon, MenuIcon, SearchIcon, TapeeIcon } from '../icon/icon'
+import Logo from "../assets/pic/bird_2.svg"
 
 function Navbar() {
 
@@ -10,11 +11,11 @@ function Navbar() {
       <div className='flex items-center justify-between py-5 font-medium m-0 p-0'>
 
          {/* LOGO img */}
-         {/* <img src="../assets/logo.png" alt="logo" className='w-36' /> */}
-         <div className='flex justify-center items-center'>
-            <TapeeIcon className="w-12 cursor-pointer" />
-            <p>ShopStore</p>
-         </div>
+         {/* <img src={Logo} alt="logo" className='w-20 m-0 p-0' /><p>ShopStore</p> */}
+         <Link to="/" className='flex justify-center items-center cursor-pointer'>
+            <TapeeIcon className="w-12" />
+            <p className='text-[30px]'>ShopStore</p>
+         </Link>
 
          <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
             <NavLink to="/" className="flex flex-col items-center gap-1">
@@ -68,10 +69,10 @@ function Navbar() {
                   <DropdownIcon className="w-8" />
                   <p className='text-[20px]'>Back</p>
                </div>
-               <NavLink onClick={()=>setVisible(false)} className="py-2 pl-6 text-[18px] border hover:bg-slate-300" to="/">HOME</NavLink>
-               <NavLink onClick={()=>setVisible(false)} className="py-2 pl-6 text-[18px] border hover:bg-slate-300" to="/collection">COLLECTION</NavLink>
-               <NavLink onClick={()=>setVisible(false)} className="py-2 pl-6 text-[18px] border hover:bg-slate-300" to="/about">ABOUT</NavLink>
-               <NavLink onClick={()=>setVisible(false)} className="py-2 pl-6 text-[18px] border hover:bg-slate-300" to="/contact">CONTACT</NavLink>
+               <NavLink onClick={()=>setVisible(false)} className="py-2 pl-6 text-[18px] border" to="/">HOME</NavLink>
+               <NavLink onClick={()=>setVisible(false)} className="py-2 pl-6 text-[18px] border" to="/collection">COLLECTION</NavLink>
+               <NavLink onClick={()=>setVisible(false)} className="py-2 pl-6 text-[18px] border" to="/about">ABOUT</NavLink>
+               <NavLink onClick={()=>setVisible(false)} className="py-2 pl-6 text-[18px] border" to="/contact">CONTACT</NavLink>
             </div>
          </div>
 

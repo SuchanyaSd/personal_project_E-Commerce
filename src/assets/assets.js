@@ -4,6 +4,8 @@ import p_img3 from "./img/products/f3.jpg"
 import p_img4 from "./img/products/f4.jpg"
 import p_img5 from "./img/products/f5.jpg"
 import p_img6 from "./img/products/f6.jpg"
+import p_img7 from "./img/products/f7.jpg"
+import p_img8 from "./img/products/f8.jpg"
 
 export const products = [
   {
@@ -15,7 +17,7 @@ export const products = [
     category: "Men",
     sizes: ["s", "M", "L"],
     date: 123123123123,
-    bestseller: true,
+    bestseller: false,
   },
   {
     id: 2,
@@ -26,7 +28,7 @@ export const products = [
     category: "Men",
     sizes: ["s", "M", "L"],
     date: 123123123123,
-    bestseller: true,
+    bestseller: false,
   },
   {
     id: 3,
@@ -37,7 +39,7 @@ export const products = [
     category: "Men",
     sizes: ["s", "M", "L"],
     date: 123123123123,
-    bestseller: true,
+    bestseller: false,
   },
   {
     id: 4,
@@ -48,7 +50,7 @@ export const products = [
     category: "Men",
     sizes: ["s", "M", "L"],
     date: 123123123123,
-    bestseller: true,
+    bestseller: false,
   },
   {
     id: 5,
@@ -59,7 +61,7 @@ export const products = [
     category: "Women",
     sizes: ["s", "M", "L"],
     date: 123123123123,
-    bestseller: true,
+    bestseller: false,
   },
   {
     id: 6,
@@ -70,7 +72,7 @@ export const products = [
     category: "Women",
     sizes: ["s", "M", "L"],
     date: 123123123123,
-    bestseller: true,
+    bestseller: false,
   },
   {
     id: 7,
@@ -81,22 +83,18 @@ export const products = [
     category: "Women",
     sizes: ["s", "M", "L"],
     date: 123123123123,
-    bestseller: true,
+    bestseller: false,
   },
   {
     id: 8,
     name: "Women cotton",
     description: "asdasd zxczxc asdas dqweqweqwe",
     price: 100,
-    image: [
-      p_img2,
-      p_img3,
-      p_img4,
-    ],
+    image: [p_img2,],
     category: "Women",
     sizes: ["s", "M", "L"],
     date: 123123123123,
-    bestseller: true,
+    bestseller: false,
   },
   {
     id: 9,
@@ -107,7 +105,7 @@ export const products = [
     category: "Women",
     sizes: ["s", "M", "L"],
     date: 123123123123,
-    bestseller: true,
+    bestseller: false,
   },
   {
     id: 10,
@@ -118,7 +116,7 @@ export const products = [
     category: "Women",
     sizes: ["s", "M", "L"],
     date: 123123123123,
-    bestseller: true,
+    bestseller: false,
   },
   {
     id: 11,
@@ -129,7 +127,7 @@ export const products = [
     category: "Women",
     sizes: ["s", "M", "L"],
     date: 123123123123,
-    bestseller: true,
+    bestseller: false,
   },
   {
     id: 12,
@@ -138,6 +136,61 @@ export const products = [
     price: 100,
     image: [p_img5],
     category: "Women",
+    sizes: ["s", "M", "L"],
+    date: 123123123123,
+    bestseller: true,
+  },
+  {
+    id: 13,
+    name: "Men cotton",
+    description: "asdasd zxczxc asdas dqweqweqwe",
+    price: 100,
+    image: [p_img8],
+    category: "Men",
+    sizes: ["s", "M", "L"],
+    date: 123123123123,
+    bestseller: true,
+  },
+  {
+    id: 14,
+    name: "Men cotton",
+    description: "asdasd zxczxc asdas dqweqweqwe",
+    price: 100,
+    image: [p_img7],
+    category: "Men",
+    sizes: ["s", "M", "L"],
+    date: 123123123123,
+    bestseller: true,
+  },
+  {
+    id: 15,
+    name: "Men cotton",
+    description: "asdasd zxczxc asdas dqweqweqwe",
+    price: 100,
+    image: [p_img6],
+    category: "Men",
+    sizes: ["s", "M", "L"],
+    date: 123123123123,
+    bestseller: true,
+  },
+  {
+    id: 16,
+    name: "Men cotton",
+    description: "asdasd zxczxc asdas dqweqweqwe",
+    price: 100,
+    image: [p_img4],
+    category: "Men",
+    sizes: ["s", "M", "L"],
+    date: 123123123123,
+    bestseller: true,
+  },
+  {
+    id: 17,
+    name: "Men cotton",
+    description: "asdasd zxczxc asdas dqweqweqwe",
+    price: 100,
+    image: [p_img3],
+    category: "Men",
     sizes: ["s", "M", "L"],
     date: 123123123123,
     bestseller: true,
