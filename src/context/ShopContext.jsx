@@ -1,5 +1,5 @@
 // เป็นฟังก์ชันจาก React ที่ใช้สร้าง Context สำหรับแชร์ข้อมูลระหว่าง Components โดยไม่ต้องใช้ props ซ้ำๆ
-import { createContext } from "react"; 
+import { createContext, useState } from "react"; 
 import { products } from "../assets/assets"
 
 // createContext() จะสร้าง ShopContext ขึ้นมา ซึ่งเป็นตัวกลางที่ใช้แชร์ข้อมูลระหว่าง components
@@ -11,10 +11,13 @@ const ShopContextProvider = (props) => {
    // กำหนดค่าที่ต้องการแชร์ผ่าน Context
    const currency = "$"
    const delivery_free = 10
+   const [search, setSearch] = useState("")
+   const [showSearch, setShowSearch] = useState(false)
 
    // value เป็น object ที่เก็บข้อมูลที่ต้องการแชร์ให้ components 
    const value = {
-      products, currency, delivery_free
+      products, currency, delivery_free,
+      search, setSearch, showSearch, setShowSearch
    }
 
    return (
