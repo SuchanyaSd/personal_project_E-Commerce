@@ -1,6 +1,6 @@
 // เป็นฟังก์ชันจาก React ที่ใช้สร้าง Context สำหรับแชร์ข้อมูลระหว่าง Components โดยไม่ต้องใช้ props ซ้ำๆ
 import { createContext, useState } from "react"; 
-import { products } from "../assets/assets"
+import { products } from "../assets/frontend_assets/assets"
 
 // createContext() จะสร้าง ShopContext ขึ้นมา ซึ่งเป็นตัวกลางที่ใช้แชร์ข้อมูลระหว่าง components
 export const ShopContext = createContext()
