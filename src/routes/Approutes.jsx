@@ -10,16 +10,22 @@ import PlaceOrder from "../pages/PlaceOrder"
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import SearchBar from '../components/SearchBar'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import Orders from '../pages/Orders'
 import Register from "../pages/Register"
+import AdminPanel from '../pages/admin/Adver2'
+import Additem from '../pages/admin/Additem'
+import Listitem from '../pages/admin/Listitem'
+import AdminOrders from '../pages/admin/AdminOrders'
+import Admin from "../pages/admin/Admin"
+
 
 const Approutes = () => {
    return (
       <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
-         <ToastContainer />
+         {/* <ToastContainer />
          <Navbar />
-         <SearchBar />
+         <SearchBar /> */}
          <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/collection' element={<Collection />} />
@@ -28,12 +34,21 @@ const Approutes = () => {
             <Route path='/product/:productId' element={<Product />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register/>}/>
+            <Route path='/register' element={<Register />} />
             <Route path='/place-order' element={<PlaceOrder />} />
             {/* <Route path='/orders' element={<Orders />} /> */}
-            <Route path='/orders' element={<Orders/>}/>
+            <Route path='/orders' element={<Orders />} />
          </Routes>
-         <Footer />
+
+         <Routes>
+            <Route path='/admin' element={<Admin />} />
+            {/* <Route path='/admin' element={<Admin />} /> */}
+            <Route path='/admin1' element={<AdminPanel />} />
+            <Route path='/add-items' element={<Additem />} />
+            <Route path='/list-items' element={<Listitem />} />
+            <Route path='/admin-orders' element={<AdminOrders />} />
+         </Routes>
+         {/* <Footer /> */}
       </div>
    )
 }
