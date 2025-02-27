@@ -2,6 +2,7 @@
 import { createContext, useEffect, useState } from "react";
 import { products } from "../assets/frontend_assets/assets"
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 // createContext() จะสร้าง ShopContext ขึ้นมา ซึ่งเป็นตัวกลางที่ใช้แชร์ข้อมูลระหว่าง components
 export const ShopContext = createContext()
@@ -15,6 +16,7 @@ const ShopContextProvider = (props) => {
    const [search, setSearch] = useState("")
    const [showSearch, setShowSearch] = useState(false)
    const [cartItems, setCartItems] = useState({})
+   const navigate = useNavigate()
 
    const addToCart = async (itemId, size) => {
 
@@ -106,7 +108,7 @@ const ShopContextProvider = (props) => {
       search, setSearch, showSearch, setShowSearch,
       cartItems, addToCart,
       getCartCount, updateQuantity,
-      getCartAmount
+      getCartAmount, navigate
 
    }
 
