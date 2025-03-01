@@ -21,6 +21,7 @@ import Admin from "../pages/admin/Admin"
 import AdminLayout from '../pages/AdminLayout'
 import ProtectRoute from './ProtectRoute'
 import PlaceOrdercopy from '../pages/PlaceOrder copy'
+import PlaceOrdercopy2 from '../pages/PlaceOrder copy 2'
 
 // Main layout for regular user routes that includes the common components
 const MainLayout = () => {
@@ -54,7 +55,8 @@ const Approutes = () => {
             {/* Protected user routes */}
             <Route element={<ProtectRoute el={<MainLayout />} allows={["USER"]} />}>
                {/* <Route path='place-order' element={<PlaceOrder />} /> */}
-               <Route path='place-order' element={<PlaceOrdercopy />} />
+               {/* <Route path='place-order' element={<PlaceOrdercopy />} /> */}
+               <Route path='place-order' element={<PlaceOrdercopy2 />} />
                <Route path='orders' element={<Orders />} />
             </Route>
 
