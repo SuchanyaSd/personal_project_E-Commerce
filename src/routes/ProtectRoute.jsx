@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
-import useAuthStore from "../store/auth-store";
+// import useAuthStore from "../store/auth-store";
 import { actionCurrentUser } from "../api/auth";
+import UserStore from "../store/UserStore";
+import useAuthStore from "../store/auth-store";
 
 function ProtectRoute({ el, allows }) {
    const [ok, setOk] = useState(null);
+   
+   
    //   console.log("Hello, Protect Route");
    //   const user = useAuthStore((state) => state.user);
    const token = useAuthStore((state) => state.token);
+   console.log("Bam Rebornza token check:",token)
 
    useEffect(() => {
       checkPermission();
@@ -17,6 +22,7 @@ function ProtectRoute({ el, allows }) {
       try {
          const res = await actionCurrentUser(token);
          // Role from back-end
+         console.log(res)
          const role = res.data.result.role;
          //   console.log(role);
          setOk(allows.includes(role));
