@@ -11,7 +11,7 @@ function ProtectRoute({ el, allows }) {
    //   console.log("Hello, Protect Route");
    //   const user = useAuthStore((state) => state.user);
    const token = useAuthStore((state) => state.token);
-   console.log("Bam Rebornza token check:",token)
+   // console.log("Bam Rebornza token check:",token)
 
    useEffect(() => {
       checkPermission();
