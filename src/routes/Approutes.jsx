@@ -54,9 +54,9 @@ const Approutes = () => {
 
             {/* Protected user routes */}
             <Route element={<ProtectRoute el={<MainLayout />} allows={["USER"]} />}>
-               {/* <Route path='place-order' element={<PlaceOrder />} /> */}
+               <Route path='place-order' element={<PlaceOrder />} />
                {/* <Route path='place-order' element={<PlaceOrdercopy />} /> */}
-               <Route path='place-order' element={<PlaceOrdercopy2 />} />
+               {/* <Route path='place-order' element={<PlaceOrdercopy2 />} /> */}
                <Route path='orders' element={<Orders />} />
             </Route>
 

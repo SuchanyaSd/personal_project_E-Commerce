@@ -1,10 +1,16 @@
-import React, { useContext } from 'react'
-import { ShopContext } from '../context/ShopContext'
-import Title from './Title'
+import React from 'react';
+import Title from './Title';
+import useCartStore from '../store/order_store';
 
 const CartTotal = () => {
+   const { cart } = useCartStore();
+   const currency = "$";
 
-   const { currency, delivery_free, getCartAmount } = useContext(ShopContext)
+   const getCartAmount = () => {
+      return cart.reduce((total, item) => {
+         return total + item.price * item.quantity;
+      }, 0);
+   };
 
    return (
       <div className='w-full'>
@@ -15,21 +21,16 @@ const CartTotal = () => {
          <div className="flex flex-col gap-2 mt-2 text-sm">
             <div className="flex justify-between">
                <p>Subtotal</p>
-               <p>{currency} {getCartAmount()}.00</p>
-            </div>
-            <hr />
-            <div className="flex justify-between">
-               <p>Shipping Fee</p>
-               <p>{currency} {delivery_free}.00</p>
+               <p>{currency} {getCartAmount().toFixed(2)}</p>
             </div>
             <hr />
             <div className="flex justify-between">
                <p>Total</p>
-               <p>{currency} {getCartAmount() === 0 ? 0 : getCartAmount() + delivery_free}.00</p>
+               <p>{currency} {getCartAmount().toFixed(2)}</p>
             </div>
          </div>
       </div>
-   )
-}
+   );
+};
 
-export default CartTotal
+export default CartTotal;

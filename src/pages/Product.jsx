@@ -162,20 +162,17 @@ import { useParams } from 'react-router';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import RelatedProducts from '../components/RelatedProducts';
-import useAuthStore from '../store/auth-store';
 import useCartStore from '../store/order_store';
 
 export default function Product() {
   const { productId } = useParams();
-  const { customerId } = useAuthStore();
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [cartItems, setCartItems] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { cart, addToCart, removeFromCart, clearCart } = useCartStore();
+  const { cart, addToCart } = useCartStore();
   console.log(cart)
 
   useEffect(() => {
@@ -194,48 +191,6 @@ export default function Product() {
     };
     fetchProductData();
   }, [productId]);
-
-  // console.log(productData);
-
-  // const addToCart = async (itemId, size) => {
-  //   if (!size) {
-  //     toast.error("Select Product Size");
-  //     return;
-  //   }
-
-  //   try {
-  //     // 🔹 เรียกใช้ Zustand เพื่อดึง customerId
-  //     const { customerId } = useAuthStore.getState();
-
-  //     if (!customerId) {
-  //       toast.error("Please login to add items to cart.");
-  //       return;
-  //     }
-
-  //     // const quantity = 1; // กำหนดค่าเริ่มต้นเป็น 1 หรือรับจาก UI
-
-  //     // 🔹 เรียก API เพื่อเพิ่มสินค้าไปยังตะกร้าใน Backend
-  //     const res = await axios.post("http://localhost:8008/api/cart/add-cart", {
-  //       customerId,
-  //       productId: itemId,
-  //       size,
-  //       quantity
-  //     });
-
-
-
-  //     if (res.status === 201) {
-  //       toast.success("Added to cart!");
-  //     } else {
-  //       toast.error("Failed to add to cart.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error adding to cart:", error);
-  //     toast.error("Error adding item to cart.");
-  //   }
-  // };
-
-
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -291,28 +246,15 @@ export default function Product() {
           </div>
 
           {/* Add to Cart Button */}
-          <button onClick={() => {
-            if (cart.length === 0) {
-              addToCart({
-                id: productId,
-                size: size,
-                image: image,
-                quantity: quantity,
-                price: productData.price,
-                name: productData.name
-              });
-            } else {
-              let found = false; // ใช้ตัวแปรเช็คว่ามีสินค้าอยู่แล้วหรือไม่
+          {/* Add to Cart Button */}
+          <button
+            onClick={() => {
+              if (!size) {
+                toast.error("Please select a size before adding to cart!");
+                return; // ถ้ายังไม่เลือก size หยุดทำงาน
+              }
 
-              cart.forEach((item) => {
-                if (item.id === productId && item.size === size) {
-                  item.quantity += quantity;
-                  found = true; // ถ้าเจอสินค้าแล้ว ให้เปลี่ยนค่าเป็น true
-                }
-              });
-
-              if (!found) {
-                // ถ้าไม่เจอสินค้า ให้เพิ่มสินค้าใหม่
+              if (cart.length === 0) {
                 addToCart({
                   id: productId,
                   size: size,
@@ -321,13 +263,36 @@ export default function Product() {
                   price: productData.price,
                   name: productData.name
                 });
+              } else {
+                let found = false; // ใช้ตัวแปรเช็คว่ามีสินค้าอยู่แล้วหรือไม่
+
+                cart.forEach((item) => {
+                  if (item.id === productId && item.size === size) {
+                    item.quantity += quantity;
+                    found = true; // ถ้าเจอสินค้าแล้ว ให้เปลี่ยนค่าเป็น true
+                  }
+                });
+
+                if (!found) {
+                  // ถ้าไม่เจอสินค้า ให้เพิ่มสินค้าใหม่
+                  addToCart({
+                    id: productId,
+                    size: size,
+                    image: image,
+                    quantity: quantity,
+                    price: productData.price,
+                    name: productData.name
+                  });
+                }
               }
-            }
-            toast.success("Added to cart!");
-          }
-          } className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>
+              toast.success("Added to cart!");
+            }}
+            disabled={size === ""} // ปิดปุ่มถ้ายังไม่ได้เลือกไซส์
+            className={`px-8 py-3 text-sm text-white ${size === "" ? "bg-gray-400 cursor-not-allowed" : "bg-black active:bg-gray-700"}`}
+          >
             ADD TO CART
           </button>
+
 
           <hr className="mt-8 sm:w-4/5" />
           <div className="text-sm text-gray-500 mt-5">

@@ -10,7 +10,7 @@ const useCartStore = create(
          addToCart: (product) => {
             const updatedCart = [...get().cart, product];
             set({ cart: updatedCart });
-            // console.log(updatedCart);
+            console.log(updatedCart);
          },
 
          updateCartQuantity: (itemId, size, quantity) => {
