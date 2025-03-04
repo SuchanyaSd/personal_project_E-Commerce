@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Title from '../components/Title';
+import useAuthStore from '../store/auth-store';
 
 const Orders = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const customerId = 2; // เปลี่ยนเป็นค่าจริงของ user ที่ login (ถ้ามีระบบ auth)
+    const customerId = useAuthStore((state) => state.customerId); // ดึง customerId จาก zustand store
 
     useEffect(() => {
         const fetchOrders = async () => {
+            if (!customerId) {
+                setLoading(false);
+                return; // ถ้าไม่มี customerId ไม่ต้อง fetch data
+            }
+
             try {
                 const response = await axios.get(`http://localhost:8008/api/user/cart/${customerId}`);
                 setOrders(response.data);
@@ -25,6 +31,7 @@ const Orders = () => {
 
     if (loading) return <div className="flex justify-center items-center h-screen">Loading...</div>;
     if (error) return <div className="flex justify-center items-center h-screen text-red-500">Error: {error}</div>;
+    if (!customerId) return <div className="flex justify-center items-center h-screen">Please login to view orders.</div>; // เพิ่มเงื่อนไขตรวจสอบ customerId
 
     return (
         <div className="border-t pt-16 px-4 md:px-8 lg:px-16">
