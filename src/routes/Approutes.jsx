@@ -13,24 +13,22 @@ import SearchBar from '../components/SearchBar'
 import { ToastContainer } from 'react-toastify';
 import Orders from '../pages/Orders'
 import Register from "../pages/Register"
-import AdminPanel from '../pages/admin/Adver2'
 import Additem from '../pages/admin/Additem'
 import Listitem from '../pages/admin/Listitem'
 import AdminOrders from '../pages/admin/AdminOrders'
 import Admin from "../pages/admin/Admin"
 import AdminLayout from '../pages/AdminLayout'
 import ProtectRoute from './ProtectRoute'
-import PlaceOrdercopy from '../pages/PlaceOrder copy'
-import PlaceOrdercopy2 from '../pages/PlaceOrder copy 2'
+import ProfileForm from '../pages/EditProfile'
 
-// Main layout for regular user routes that includes the common components
+
 const MainLayout = () => {
    return (
       <>
          <ToastContainer />
          <Navbar />
          <SearchBar />
-         <Outlet /> {/* This is where the route content will render */}
+         <Outlet />
          <Footer />
       </>
    );
@@ -50,13 +48,12 @@ const Approutes = () => {
                <Route path='cart' element={<Cart />} />
                <Route path='login' element={<Login />} />
                <Route path='register' element={<Register />} />
+               <Route path='profile' element={<ProfileForm />} />
             </Route>
 
             {/* Protected user routes */}
             <Route element={<ProtectRoute el={<MainLayout />} allows={["USER"]} />}>
                <Route path='place-order' element={<PlaceOrder />} />
-               {/* <Route path='place-order' element={<PlaceOrdercopy />} /> */}
-               {/* <Route path='place-order' element={<PlaceOrdercopy2 />} /> */}
                <Route path='orders' element={<Orders />} />
             </Route>
 

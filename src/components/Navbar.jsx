@@ -9,7 +9,6 @@ function Navbar() {
 
    const [visible, setVisible] = useState(false)
    const [showSearch, setShowSearch] = useState(false)
-   const [cartItems, setCartItems] = useState({})
    const navigate = useNavigate()
    const { actionLogout } = useAuthStore();
    const { clearCart, cart } = useCartStore();
@@ -32,7 +31,6 @@ function Navbar() {
       <div className='flex items-center justify-between py-5 font-medium m-0 p-0'>
 
          {/* LOGO img */}
-         {/* <img src={Logo} alt="logo" className='w-20 m-0 p-0' /><p>ShopStore</p> */}
          <Link to="/" className='flex justify-center items-center cursor-pointer'>
             <TapeeIcon className="w-12" />
             <p className='text-[30px]'>ShopStore</p>
@@ -66,7 +64,7 @@ function Navbar() {
                <AvatarIcon className="w-8 cursor-pointer" />
                <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
                   <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded-b-lg">
-                     <p className="cursor-pointer hover:text-black">My Profile</p>
+                     <p onClick={() => navigate("/profile")} className="cursor-pointer hover:text-black">My Profile</p>
                      <p onClick={() => navigate("/login")} className="cursor-pointer hover:text-black">Login</p>
                      <p onClick={() => navigate("/orders")} className="cursor-pointer hover:text-black">Order</p>
                      <p onClick={handleLogout} className="cursor-pointer hover:text-black">Logout</p>

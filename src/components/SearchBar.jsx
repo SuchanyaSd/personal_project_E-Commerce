@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
-// import { ShopContext } from '../context/ShopContext'
 import { CrossIcon, SearchIcon } from '../icon/icon'
 import { useLocation } from 'react-router'
 
 const SearchBar = () => {
-   // const { showSearch, search, setSearch, setShowSearch } = useContext(ShopContext)
    const [visible, setVisible] = useState(false)
    const location = useLocation()
    const [search, setSearch] = useState("")

@@ -44,11 +44,6 @@ const Login = () => {
       }
    }
 
-   // const onSubmithdl = (e) => {
-   //    e.preventDefault()
-   //    hdlLogin()
-   // }
-
    return (
       <form onSubmit={hdlLogin} className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-700'>
          <div className="inline-flex items-center gap-2 mb-2 mt-10">

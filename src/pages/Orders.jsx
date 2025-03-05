@@ -3,7 +3,6 @@ import axios from 'axios';
 import Title from '../components/Title';
 import useAuthStore from '../store/auth-store';
 import { useNavigate } from 'react-router';
-import { toast } from 'react-toastify';
 
 const Orders = () => {
     const [orders, setOrders] = useState([]);
