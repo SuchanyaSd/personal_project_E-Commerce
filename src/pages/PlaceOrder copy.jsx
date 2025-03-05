@@ -10,10 +10,17 @@ import useAuthStore from '../store/auth-store';
 const PlaceOrder = () => {
    const [method, setMethod] = useState("cod");
    const navigate = useNavigate();
-
-   // 🔹 ดึงข้อมูลจาก Zustand
    const cart = useCartStore.getState().cart;
    const { customerId } = useAuthStore.getState();
+   const [firstName, setFirstName] = useState('');
+   const [lastName, setLastName] = useState('');
+   const [email, setEmail] = useState('');
+   const [street, setStreet] = useState('');
+   const [city, setCity] = useState('');
+   const [state, setState] = useState('');
+   const [zipcode, setZipcode] = useState('');
+   const [country, setCountry] = useState('');
+   const [phone, setPhone] = useState('');
 
    const handlePlaceOrder = async () => {
       if (!customerId) {
@@ -27,53 +34,59 @@ const PlaceOrder = () => {
       }
 
       try {
-         for (const item of cart) {
-            console.log("Sending order:", {
-               customerId,
+         const orderData = {
+            customerId,
+            items: cart.map(item => ({
                productId: item.id,
-               size: item.size,
-               quantity: item.quantity
-            });
+               size: item.size, // ให้ Backend แปลงเป็น sizeId เอง
+               quantity: item.quantity,
+            })),
+            // deliveryInfo: {
+            //    firstName,
+            //    lastName,
+            //    email,
+            //    street,
+            //    city,
+            //    state,
+            //    zipcode,
+            //    country,
+            //    phone,
+            // },
+            paymentMethod: method,
+         };
 
-            await axios.post("http://localhost:8008/api/cart/add-cart", {
-               customerId,
-               productId: item.id,
-               size: item.size,
-               quantity: item.quantity
-            });
-         }
+         const response = await axios.post("http://localhost:8008/api/cart/add-cart", orderData);
 
          toast.success("Order placed successfully!");
-         useCartStore.getState().clearCart(); // เคลียร์ตะกร้า
-         navigate("/orders"); // ไปหน้าคำสั่งซื้อ
+         useCartStore.getState().clearCart();
+         navigate("/orders");
       } catch (error) {
          console.error("Error placing order:", error);
-         toast.error("Failed to place order.");
+         toast.error("Failed to place order: " + (error.response?.data?.message || error.message));
       }
    };
 
    return (
       <div className='flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t'>
-         {/* left side */}
          <div className="flex flex-col gap-4 w-full sm:max-w-[480px]">
             <div className="text-xl sm:text-2xl my-3">
                <Title text1={"DELIVERY"} text2={"INFORMATION"} />
             </div>
             <div className="flex gap-3">
-               <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='First name'/>
-               <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='Last name'/>
+               <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='First name' value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+               <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='Last name' value={lastName} onChange={(e) => setLastName(e.target.value)} />
             </div>
-            <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="email" placeholder='email'/>
-            <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='street'/>
+            <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="email" placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='street' value={street} onChange={(e) => setStreet(e.target.value)} />
             <div className="flex gap-3">
-               <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='City'/>
-               <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='State'/>
+               <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='City' value={city} onChange={(e) => setCity(e.target.value)} />
+               <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='State' value={state} onChange={(e) => setState(e.target.value)} />
             </div>
             <div className="flex gap-3">
-               <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="number" placeholder='Zipcode'/>
-               <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='Country'/>
+               <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="number" placeholder='Zipcode' value={zipcode} onChange={(e) => setZipcode(e.target.value)} />
+               <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='Country' value={country} onChange={(e) => setCountry(e.target.value)} />
             </div>
-            <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="number" placeholder='Phone'/>
+            <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="number" placeholder='Phone' value={phone} onChange={(e) => setPhone(e.target.value)} />
          </div>
 
          <div className='flex flex-col w-full sm:max-w-[480px] gap-2 ml-10'>
@@ -100,8 +113,7 @@ const PlaceOrder = () => {
             }
          </div>
 
-         {/* right side */}
-         <div className="mt-8">
+         <div className="mt-8 w-[700px]">
             <CartTotal />
             <div className="mt-12">
                <Title text1={"PAYMENT"} text2={"METHOD"} />
@@ -112,7 +124,7 @@ const PlaceOrder = () => {
                   </div>
                </div>
                <div className="w-full text-end mt-8">
-                  <button onClick={handlePlaceOrder} className='bg-black text-white px-16 py-3 text-sm'>PLACE ORDER</button>
+                  <button onClick={handlePlaceOrder} className='bg-black text-white px-16 py-3 text-sm cursor-pointer hover:bg-pink-500'>PLACE ORDER</button>
                </div>
             </div>
          </div>
