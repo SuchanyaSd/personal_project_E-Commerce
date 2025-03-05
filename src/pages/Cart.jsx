@@ -18,7 +18,7 @@ const Cart = () => {
 
 
   useEffect(() => {
-    
+
   }, [customerId]);
 
   const handleProceedToCheckout = () => {
@@ -108,7 +108,8 @@ const Cart = () => {
           <div className="w-full text-end">
             <button
               onClick={handleProceedToCheckout}
-              className="bg-black text-white text-sm my-8 px-8 py-3"
+              disabled={cart.length === 0}
+              className={`bg-black text-white text-sm my-8 px-8 py-3  ${cart.length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-pink-600 , cursor-pointer'}`}
             >
               PROCEED TO CHECKOUT
             </button>
