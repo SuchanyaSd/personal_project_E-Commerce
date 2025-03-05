@@ -97,17 +97,20 @@ import Title from '../components/Title';
 import { assets } from '../assets/frontend_assets/assets';
 import CartTotal from '../components/CartTotal';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+// import axios from 'axios';
 import useAuthStore from '../store/auth-store';
 import useCartStore from '../store/order_store';
+import { toast } from 'react-toastify';
 
 const Cart = () => {
   const navigate = useNavigate();
-  const [cartItems, setCartItems] = useState({});
+  // const [cartItems, setCartItems] = useState({});
   const { products, currency } = useContext(ShopContext);
-  const [cartData, setCartData] = useState([]);
+  // const [cartData, setCartData] = useState([]);
   const customerId = useAuthStore((state) => state.customerId); // ดึง customerId
+  const { token } = useAuthStore(); // ดึง token เพื่อตรวจสอบการ login
   const { cart, removeFromCart, updateCartQuantity } = useCartStore();
+
 
   useEffect(() => {
     // const fetchCartData = async () => {
@@ -122,9 +125,18 @@ const Cart = () => {
     // };
 
     // fetchCartData();
-    console.log(cart)
+    // console.log(cart)
 
   }, [customerId]);
+
+  const handleProceedToCheckout = () => {
+    if (!token) {
+      toast("Please login to place order.");
+      navigate("/login");
+    } else {
+      navigate("/place-order");
+    }
+  };
 
   const updateQuantity = (itemId, size, quantity) => {
     if (quantity < 1) return; // ป้องกันการอัปเดตค่าต่ำกว่า 1
@@ -215,7 +227,7 @@ const Cart = () => {
           <CartTotal />
           <div className="w-full text-end">
             <button
-              onClick={() => navigate("/place-order")}
+              onClick={handleProceedToCheckout}
               className="bg-black text-white text-sm my-8 px-8 py-3"
             >
               PROCEED TO CHECKOUT

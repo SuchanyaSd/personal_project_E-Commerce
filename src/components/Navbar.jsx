@@ -1,12 +1,32 @@
-import React, { useContext, useState } from 'react'
-import { Link, NavLink } from 'react-router'
+import React, { useState } from 'react'
+import { Link, NavLink, useNavigate } from 'react-router'
 import { AvatarIcon, CartIcon, DropdownIcon, MenuIcon, SearchIcon, TapeeIcon } from '../icon/icon'
-import { ShopContext } from '../context/ShopContext'
+import useAuthStore from '../store/auth-store'
+import useCartStore from '../store/order_store'
+
 
 function Navbar() {
 
    const [visible, setVisible] = useState(false)
-   const { setShowSearch, getCartCount } = useContext(ShopContext)
+   const [showSearch, setShowSearch] = useState(false)
+   const [cartItems, setCartItems] = useState({})
+   const navigate = useNavigate()
+   const { actionLogout } = useAuthStore();
+   const { clearCart, cart } = useCartStore();
+
+   const handleLogout = () => {
+      actionLogout(); // ล้างข้อมูลการล็อกอิน
+      clearCart(); // ล้างข้อมูลตะกร้าสินค้า
+      navigate("/"); // นำทางไปหน้า Login
+   };
+
+
+   const getCartCount = () => {
+      return cart.reduce((total, item) => total + item.quantity, 0);
+   };
+
+
+
 
    return (
       <div className='flex items-center justify-between py-5 font-medium m-0 p-0'>
@@ -43,13 +63,13 @@ function Navbar() {
             <SearchIcon onClick={() => setShowSearch(true)} className="w-8 cursor-pointer" />
 
             <div className="group relative">
-               {/*ProfileIcon*/}
-               <Link to="/login"><AvatarIcon className="w-8 cursor-pointer" /></Link>
+               <AvatarIcon className="w-8 cursor-pointer" />
                <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
                   <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded-b-lg">
-                     <p className='cursor-pointer hover:text-black'>My Profile</p>
-                     <p className='cursor-pointer hover:text-black'>Order</p>
-                     <p className='cursor-pointer hover:text-black'>Logout</p>
+                     <p className="cursor-pointer hover:text-black">My Profile</p>
+                     <p onClick={() => navigate("/login")} className="cursor-pointer hover:text-black">Login</p>
+                     <p onClick={() => navigate("/orders")} className="cursor-pointer hover:text-black">Order</p>
+                     <p onClick={handleLogout} className="cursor-pointer hover:text-black">Logout</p>
                   </div>
                </div>
             </div>

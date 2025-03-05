@@ -1,18 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { ShopContext } from '../context/ShopContext';
-import { ChevronRight } from "lucide-react";
 import Title from '../components/Title';
 import ProductItem from '../components/ProductItem';
 
 export default function Collection() {
-   const { search, showSearch } = useContext(ShopContext);
    const [products, setProducts] = useState([]);
    const [filterProduct, setFilterProduct] = useState([]);
    const [category, setCategory] = useState([]);
-   const [subCategory, setSubCategory] = useState([]);
    const [sortType, setSortType] = useState("relavent");
-   const [showFilter, setShowFilter] = useState(false);
+   const [search, setSearch] = useState("")
+   const [showSearch, setShowSearch] = useState(false)
 
    // ดึงข้อมูลจาก backend
    useEffect(() => {
@@ -37,14 +34,6 @@ export default function Collection() {
       fetchProducts();
    }, []);
 
-   const toggleCategory = (e) => {
-      const value = e.target.value;
-      console.log(e.target.value);
-      setCategory((prev) =>
-         prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value]
-      );
-   };
-
    // ฟังก์ชันกรองสินค้า
    useEffect(() => {
       let filtered = [...products];
@@ -55,12 +44,9 @@ export default function Collection() {
       if (category.length > 0) {
          filtered = filtered.filter(item => category.includes(item.category));
       }
-      if (subCategory.length > 0) {
-         filtered = filtered.filter(item => subCategory.includes(item.subCategory));
-      }
 
       setFilterProduct(filtered);
-   }, [category, subCategory, search, showSearch, products]);
+   }, [category, search, showSearch, products]);
 
    // ฟังก์ชันเรียงสินค้า
    useEffect(() => {
@@ -82,28 +68,6 @@ export default function Collection() {
 
    return (
       <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
-         {/* Filter option */}
-         <div className="min-w-60">
-            <p onClick={() => setShowFilter(!showFilter)} className="my-2 text-xl flex items-center cursor-pointer gap-2">FILTERS
-               <ChevronRight className={`h-5 sm:hidden ${showFilter ? "rotate-90" : ""}`} />
-            </p>
-            {/* Category filter */}
-            <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? "" : "hidden"} sm:block`}>
-               <p className="mb-3 text-sm font-medium">CATEGORIES</p>
-               <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
-                  <label className="flex gap-2">
-                     <input type="checkbox" value="Men" onChange={toggleCategory} />Men
-                  </label>
-                  <label className="flex gap-2">
-                     <input type="checkbox" value="Women" onChange={toggleCategory} />Women
-                  </label>
-                  <label className="flex gap-2">
-                     <input type="checkbox" value="Kids" onChange={toggleCategory} />Kids
-                  </label>
-               </div>
-            </div>
-         </div>
-
          {/* Right side */}
          <div className="flex-1">
             <div className="flex justify-between text-base sm:text-2xl mb-4">

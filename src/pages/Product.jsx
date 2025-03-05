@@ -246,7 +246,6 @@ export default function Product() {
           </div>
 
           {/* Add to Cart Button */}
-          {/* Add to Cart Button */}
           <button
             onClick={() => {
               if (!size) {
@@ -304,7 +303,7 @@ export default function Product() {
       </div>
 
       {/* Related Products */}
-      <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
+      {/* <RelatedProducts category={productData.category} subCategory={productData.subCategory} /> */}
     </div>
   ) : (
     <div className="opacity-0"></div>
