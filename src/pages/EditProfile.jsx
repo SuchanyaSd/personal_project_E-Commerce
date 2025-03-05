@@ -18,7 +18,7 @@ function ProfileForm() {
                <input
                   type="text"
                   id="name"
-                  defaultValue="admin"
+                  placeholder="your name"
                   className="mt-1 p-2 w-full border rounded-md"
                />
             </div>
@@ -30,7 +30,7 @@ function ProfileForm() {
                <input
                   type="email"
                   id="email"
-                  defaultValue="admin@admin.com"
+                  placeholder="admin@admin.com"
                   className="mt-1 p-2 w-full border rounded-md"
                />
             </div>

@@ -9,14 +9,18 @@ const Login = () => {
    const actionLoginWithZustand = useAuthStore(state => state.actionLoginWithZustand)
    const [currentState, setCurrentState] = useState("Login")
    const navigate = useNavigate()
-
    const login = UserStore(state => state.login)
+
+   //useState ใช้ในการเก็บข้อมูลของฟอร์มล็อกอิน โดยเก็บค่า email และ password ไว้ใน state input ซึ่งเริ่มต้นเป็นค่าว่าง (empty string)
    const [input, setInput] = useState({
+      //input จะเก็บข้อมูลอีเมลและรหัสผ่านที่ผู้ใช้กรอกเข้ามา
       email: '',
       password: ''
    })
 
-
+   // จะทำงานทุกครั้งที่มีการเปลี่ยนแปลงใน input (เช่น การพิมพ์ตัวอักษรในฟอร์ม) โดยจะได้รับอีเวนต์ (event) e เป็นพารามิเตอร์
+   //ฟังก์ชันนี้จะใช้ setInput เพื่ออัพเดตค่าใน state input โดยจะอัพเดตค่าสำหรับ email หรือ password ที่เปลี่ยนแปลง ตามชื่อของฟิลด์ที่ถูกแก้ไข (โดยใช้ e.target.name เพื่อดึงชื่อของฟิลด์ที่เปลี่ยนแปลง)
+   //setInput(prv => ({ ...prv, [e.target.name]: e.target.value })) หมายความว่า จะคัดลอกค่าปัจจุบันของ input แล้วแค่เปลี่ยนค่าของฟิลด์ที่ถูกแก้ไข
    const hdlChange = e => {
       setInput(prv => ({ ...prv, [e.target.name]: e.target.value }))
    }
@@ -36,7 +40,7 @@ const Login = () => {
          if (data.role === 'ADMIN') {
             navigate("/admin")
          } else
-         navigate("/")
+            navigate("/")
       } catch (err) {
          const errMsg = err.response?.data?.error || err.message
          console.log(err)

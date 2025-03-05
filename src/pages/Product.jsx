@@ -10,10 +10,11 @@ export default function Product() {
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
   const [quantity, setQuantity] = useState(1);
+  // ไม่มีจะ image จะไม่แสดง
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { cart, addToCart } = useCartStore();
-  console.log(cart)
+  // console.log(cart)
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -32,8 +33,8 @@ export default function Product() {
     fetchProductData();
   }, [productId]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  // if (loading) return <div>Loading...</div>;
+  // if (error) return <div>Error: {error}</div>;
 
   return productData ? (
     <div className='border-t-2 pt-10'>

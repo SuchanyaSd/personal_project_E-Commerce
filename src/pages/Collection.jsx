@@ -34,19 +34,19 @@ export default function Collection() {
       fetchProducts();
    }, []);
 
-   // ฟังก์ชันกรองสินค้า
-   useEffect(() => {
-      let filtered = [...products];
+   // // ฟังก์ชันกรองสินค้า
+   // useEffect(() => {
+   //    let filtered = [...products];
 
-      if (showSearch && search) {
-         filtered = filtered.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
-      }
-      if (category.length > 0) {
-         filtered = filtered.filter(item => category.includes(item.category));
-      }
+   //    if (showSearch && search) {
+   //       filtered = filtered.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
+   //    }
+   //    if (category.length > 0) {
+   //       filtered = filtered.filter(item => category.includes(item.category));
+   //    }
 
-      setFilterProduct(filtered);
-   }, [category, search, showSearch, products]);
+   //    setFilterProduct(filtered);
+   // }, [category, search, showSearch, products]);
 
    // ฟังก์ชันเรียงสินค้า
    useEffect(() => {

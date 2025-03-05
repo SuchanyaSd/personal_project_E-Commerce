@@ -10,7 +10,6 @@ const Orders = () => {
     const [error, setError] = useState(null);
     const customerId = useAuthStore((state) => state.customerId); // ดึง customerId จาก zustand store
     const navigate = useNavigate();
-    const { token } = useAuthStore(); // ดึง token เพื่อตรวจสอบการ login
 
     useEffect(() => {
         const fetchOrders = async () => {

@@ -14,8 +14,10 @@ const Register = () => {
       lastname: "",
       password: "",
    });
+
+   //ฟังก์ชันนี้ถูกเรียกใช้เมื่อมีการเปลี่ยนแปลงค่าในฟิลด์ input ของฟอร์ม
    const hdlOnChange = (e) => {
-      // code body
+      // บรรทัดนี้อัปเดต state value โดยการสร้างสำเนาของ value object (...value) และแทนที่ค่าของฟิลด์ที่เกี่ยวข้อง ([e.target.name]) ด้วยค่าใหม่ที่ผู้ใช้ป้อน (e.target.value)
       setValue({
          ...value,
          [e.target.name]: e.target.value,
@@ -68,7 +70,7 @@ const Register = () => {
          />
 
          <div className="w-full flex justify-between text-sm mt-[-8px]">
-            <p onClick={()=>navigate("/login")} className="cursor-pointer">Login Herer</p>
+            <p onClick={() => navigate("/login")} className="cursor-pointer">Login Herer</p>
          </div>
          <button className='bg-black text-white font-light px-8 py-2 mt-4 hover:bg-slate-600'>Sing up</button>
       </form>

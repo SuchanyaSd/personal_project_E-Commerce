@@ -9,7 +9,7 @@ import Login from "../pages/Login"
 import PlaceOrder from "../pages/PlaceOrder"
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import SearchBar from '../components/SearchBar'
+// import SearchBar from '../components/SearchBar'
 import { ToastContainer } from 'react-toastify';
 import Orders from '../pages/Orders'
 import Register from "../pages/Register"
@@ -27,7 +27,7 @@ const MainLayout = () => {
       <>
          <ToastContainer />
          <Navbar />
-         <SearchBar />
+         {/* <SearchBar /> */}
          <Outlet />
          <Footer />
       </>

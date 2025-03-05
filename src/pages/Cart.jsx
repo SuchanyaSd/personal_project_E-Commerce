@@ -18,6 +18,7 @@ const Cart = () => {
 
 
   useEffect(() => {
+    
   }, [customerId]);
 
   const handleProceedToCheckout = () => {

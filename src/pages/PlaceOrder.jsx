@@ -11,7 +11,7 @@ const PlaceOrder = () => {
    const [method, setMethod] = useState("cod");
    const navigate = useNavigate();
 
-   // 🔹 ดึงข้อมูลจาก Zustand
+   // ดึงข้อมูลจาก Zustand
    const cart = useCartStore.getState().cart;
    const { customerId } = useAuthStore.getState();
 
@@ -27,7 +27,9 @@ const PlaceOrder = () => {
       }
 
       try {
+         //การวนลูปผ่านรายการสินค้าในตะกร้าและส่งคำสั่งซื้อไปยัง API
          for (const item of cart) {
+            //loop เพื่อวนลูปผ่านแต่ละรายการสินค้า (item) ในอาร์เรย์ cart
             console.log("Sending order:", {
                customerId,
                productId: item.id,
