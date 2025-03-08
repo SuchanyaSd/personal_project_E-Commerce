@@ -20,6 +20,10 @@ import Admin from "../pages/admin/Admin"
 import AdminLayout from '../pages/AdminLayout'
 import ProtectRoute from './ProtectRoute'
 import ProfileForm from '../pages/EditProfile'
+import EditeItem from '../pages/admin/EditItem'
+import ProductEdite from '../pages/admin/ProductEdite'
+import EditProfileAdmim from '../pages/admin/EditProfileAdmin'
+import EditProfileUser from '../pages/EditProfile'
 
 
 const MainLayout = () => {
@@ -48,13 +52,14 @@ const Approutes = () => {
                <Route path='cart' element={<Cart />} />
                <Route path='login' element={<Login />} />
                <Route path='register' element={<Register />} />
-               <Route path='profile' element={<ProfileForm />} />
+               {/* <Route path='profile' element={<ProfileForm />} /> */}
             </Route>
 
             {/* Protected user routes */}
             <Route element={<ProtectRoute el={<MainLayout />} allows={["USER"]} />}>
                <Route path='place-order' element={<PlaceOrder />} />
                <Route path='orders' element={<Orders />} />
+               <Route path='profile' element={<EditProfileUser />} />
             </Route>
 
             {/* Admin routes with minimal layout */}
@@ -63,6 +68,10 @@ const Approutes = () => {
                <Route path='add-items' element={<Additem />} />
                <Route path='list-items' element={<Listitem />} />
                <Route path='admin-orders' element={<AdminOrders />} />
+               {/* <Route path='edit-item' element={<EditeItem />} /> */}
+               {/* <Route path='product-edit' element={<ProductEdite />} /> */}
+               <Route path="edit-product/:productId" element={<ProductEdite />} />
+               <Route path="profile-admin" element={<EditProfileAdmim />} />
             </Route>
          </Routes>
       </div>
