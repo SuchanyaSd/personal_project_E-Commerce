@@ -37,7 +37,7 @@ function Navbar() {
             <p className='text-[30px]'>ShopStore</p>
          </Link>
 
-         <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
+         <ul className=' sm:flex gap-5 text-sm text-gray-700'>
             <NavLink to="/" className="flex flex-col items-center gap-1">
                <p className='text-[17px]'>HOME</p>
                <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
@@ -61,7 +61,7 @@ function Navbar() {
             {/* SearchIcon */}
             <SearchIcon onClick={() => setShowSearch(true)} className="w-8 cursor-pointer" />
 
-            <div className="group relative">
+            {/* <div className="group relative">
                <AvatarIcon className="w-8 cursor-pointer" />
                <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
                   <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded-b-lg">
@@ -85,6 +85,35 @@ function Navbar() {
                         </>
                      )}
                   </div>
+               </div>
+            </div> */}
+
+            <div>
+               <div className="dropdown dropdown-end border-none rounded-full">
+                  <div tabIndex={0} role="button" className="btn border-none rounded-full"><AvatarIcon className="w-9 cursor-pointer" /></div>
+                  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-4 mt-3 shadow-sm border-slate-200">
+                     {/* <li><a>Item 1</a></li>
+                     <li><a>Item 2</a></li> */}
+                     {!token ? (
+                        // ถ้ายังไม่ได้ login แสดงแค่ปุ่ม Login
+                        <p onClick={() => navigate("/login")} className="cursor-pointer hover:text-black text-l">
+                           Login
+                        </p>
+                     ) : (
+                        // ถ้า login แล้ว แสดงปุ่มทั้งหมด
+                        <div className='flex flex-col gap-3'>
+                           <p onClick={() => navigate("/profile")} className="cursor-pointer hover:text-black text-l">
+                              My Profile
+                           </p>
+                           <p onClick={() => navigate("/orders")} className="cursor-pointer hover:text-black text-l">
+                              Order
+                           </p>
+                           <p onClick={handleLogout} className="cursor-pointer hover:text-black text-l">
+                              Logout
+                           </p>
+                        </div>
+                     )}
+                  </ul>
                </div>
             </div>
 

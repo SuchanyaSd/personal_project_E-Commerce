@@ -12,6 +12,7 @@ const Register = () => {
       email: "",
       firstname: "",
       lastname: "",
+      address : "",
       password: "",
    });
 
@@ -54,6 +55,12 @@ const Register = () => {
          <input type="text" className='w-full px-3 py-2 border border-gray-800'
             placeholder='Last name' required
             name='lastname'
+            onChange={hdlOnChange}
+         />
+
+         <input type="text" className='w-full px-3 py-2 border border-gray-800'
+            placeholder='Address' required
+            name='address'
             onChange={hdlOnChange}
          />
 
