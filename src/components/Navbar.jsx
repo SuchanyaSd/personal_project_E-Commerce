@@ -60,34 +60,6 @@ function Navbar() {
          <div className="flex items-center gap-6">
             {/* SearchIcon */}
             <SearchIcon onClick={() => setShowSearch(true)} className="w-8 cursor-pointer" />
-
-            {/* <div className="group relative">
-               <AvatarIcon className="w-8 cursor-pointer" />
-               <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
-                  <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded-b-lg">
-                     {!token ? (
-                        // ถ้ายังไม่ได้ login แสดงแค่ปุ่ม Login
-                        <p onClick={() => navigate("/login")} className="cursor-pointer hover:text-black">
-                           Login
-                        </p>
-                     ) : (
-                        // ถ้า login แล้ว แสดงปุ่มทั้งหมด
-                        <>
-                           <p onClick={() => navigate("/profile")} className="cursor-pointer hover:text-black">
-                              My Profile
-                           </p>
-                           <p onClick={() => navigate("/orders")} className="cursor-pointer hover:text-black">
-                              Order
-                           </p>
-                           <p onClick={handleLogout} className="cursor-pointer hover:text-black">
-                              Logout
-                           </p>
-                        </>
-                     )}
-                  </div>
-               </div>
-            </div> */}
-
             <div>
                <div className="dropdown dropdown-end border-none rounded-full">
                   <div tabIndex={0} role="button" className="btn border-none rounded-full"><AvatarIcon className="w-9 cursor-pointer" /></div>

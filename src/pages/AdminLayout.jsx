@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Outlet, useLocation } from 'react-router';
 import useAuthStore from '../store/auth-store';
-import { EditProduct, EditProfile } from '../icon/icon';
+import { EditProduct, EditProfile, TapeeIcon } from '../icon/icon';
 
 const AdminLayout = () => {
    const navigate = useNavigate();
@@ -23,9 +23,13 @@ const AdminLayout = () => {
    return (
       <>
          <header className="flex justify-between items-center p-4 border-b">
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
                <span className="text-2xl font-bold mr-2">FOREVER.</span>
                <span className="text-sm text-gray-500">ADMIN PANEL</span>
+            </div> */}
+            <div onClick={()=> navigate("/")} className='flex justify-center items-center cursor-pointer'>
+               <TapeeIcon className="w-12" />
+               <p className='text-[30px]'>ShopStore</p>
             </div>
             <button onClick={handleLogout} className="bg-gray-300 hover:bg-pink-500 hover:text-white px-4 py-2 rounded">
                Logout

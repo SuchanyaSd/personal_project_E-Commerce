@@ -116,7 +116,7 @@ import Payment from '../pages/Payment'
 const MainLayout = () => {
    return (
       <>
-         <ToastContainer />
+         {/* <ToastContainer /> */}
          <Navbar />
          {/* <SearchBar /> */}
          <Outlet />
